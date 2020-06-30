@@ -73,7 +73,7 @@ def receiveMessage():
                     if 'response:' in part:
                         response = part.split('response:')[1].strip()
 
-                if '.unir.net' in request_type:
+                if 'sample_site' in request_type:
                     sendTelegramMessage('<b>The site should be in the site field and the request should be in the request field</b>, ignoring whitelist attempt', chat_id)
                     return False
 
@@ -91,7 +91,7 @@ def receiveMessage():
                         sendTelegramMessage(send_message, chat_id = chat_id)
 
         except Exception as e:
-            sendTelegramMessage('Incorrect format. Available files are <b> whitelist_5xx, whitelist_4xx, whitelist_below_400</b>, available fields are <b>response, site, request, ip</b>. Site, response and ip fields will only identify exact string match (80.10.10.10 not 80.10), request field will identify partial string match (sample-dir/favicon.ico or favicon.ico).  Example usage/format: \n/anomaly_detect whitelist_5xx request:favicon.ico, ip: 10.10.10.10, response:404\n/anomaly_detect whitelist_below_400 request: /apple/carrot, site: campus.unir.net\n/anomaly_detect whitelist_5xx site: campus.unir.net', chat_id = chat_id)
+            sendTelegramMessage('Incorrect format. Available files are <b> whitelist_5xx, whitelist_4xx, whitelist_below_400</b>, available fields are <b>response, site, request, ip</b>. Site, response and ip fields will only identify exact string match (80.10.10.10 not 80.10), request field will identify partial string match (sample-dir/favicon.ico or favicon.ico).  Example usage/format: \n/anomaly_detect whitelist_5xx request:favicon.ico, ip: 10.10.10.10, response:404\n/anomaly_detect whitelist_below_400 request: /apple/carrot, site: sample_site\n/anomaly_detect whitelist_5xx site: sample_site', chat_id = chat_id)
 
 def main():
     sendTelegramMessage('text',chat_id = 'test')
